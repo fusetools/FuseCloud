@@ -1,0 +1,15 @@
+osx_image: xcode8.1
+
+os:
+  - osx
+
+env:
+  global:
+    - XCODE_XCCONFIG_FILE=$TRAVIS_BUILD_DIR/.travis.xcconfig
+
+before_script:
+  - wget https://www.fusetools.com/downloads/latest/beta/osx -O fuse-installer.pkg &&
+    sudo installer -pkg fuse-installer.pkg -target /
+
+script:
+  - uno build -tios FuseCloud/FuseCloud.unoproj
