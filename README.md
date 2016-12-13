@@ -14,7 +14,7 @@ Please use the `for-fuse-0.31`-branch to run this app with the currently release
 
 ## Setup
 
-Register your app at https://soundcloud.com/you/apps. Assign a custom redirect uri to let SoundCloud know how to route back to the app with the token. We chose fuse-soundcloud://fuse for our app, but you'll need to come up with a new one.
+Register your app at https://soundcloud.com/you/apps. Assign a custom redirect uri to let SoundCloud<sup>®</sup> know how to route back to the app after the user has logged in. We chose fuse-soundcloud://fuse for our app, but you'll need to come up with a new one.
 
 Add the uri scheme definition to the FuseCloud/FuseCloud.unoproj file (swap fuse-soundcloud with your scheme):
 
