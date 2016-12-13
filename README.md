@@ -7,6 +7,8 @@ This app was made to serve as a reference app for people getting started with cr
 
 The app can be downloaded for both Android and iOS throug the [AppStore]() and [Google Play Store]().
 
+We've written about the motivation behind this project in [this medium article](https://medium.com/@fusetools/i-made-a-cross-platform-soundcloud-player-with-fuse-9fb1e62b7db1#.lhu76dfj6).
+
 ## Branches
 
 This app uses features from an unreleased version of Fuse.
