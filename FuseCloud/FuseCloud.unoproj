@@ -8,8 +8,8 @@
 	},
 	"Android": {
 		"SDK": {
-            "MinVersion": 21,
-        },
+			"MinVersion": 21,
+		},
 		"Description": "A music player made with Fuse, powered by SoundCloud®.",
 		"Package": "com.fuse.fusecloud",
 		"VersionCode": 3,
