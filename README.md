@@ -35,7 +35,7 @@ Start Fuse preview:
 
 ## Disclaimer
 
-This app uses the SoundCloud<sup>®</sup> API for its content (https://developers.soundcloud.com/)
+FuseCloud is an unofficial SoundCloud music player, and is not in any way endorsed by SoundCloud<sup>®</sup>. It simply uses the SoundCloud API.
 
 ## Features
 
