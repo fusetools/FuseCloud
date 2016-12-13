@@ -7,6 +7,10 @@ This app was made to serve as a reference app for people getting started with cr
 
 The app can be downloaded for both Android and iOS throug the [AppStore]() and [Google Play Store]().
 
+## Branches
+
+This app uses features from an unreleased version of Fuse.
+Please use the `for-fuse-0.31`-branch to run this app with the currently released version of Fuse.
 
 ## Setup
 
@@ -21,7 +25,6 @@ Start Fuse preview:
 * Note: Local preview works, but with a limited feature set:
 	  - No audio stream
 	  - No login
-
 
 ## Disclaimer
 
