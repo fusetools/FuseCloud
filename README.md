@@ -14,9 +14,16 @@ Please use the `for-fuse-0.31`-branch to run this app with the currently release
 
 ## Setup
 
-Register your app at https://soundcloud.com/you/apps with the following redirect uri fuse-soundcloud://fuse.
+Register your app at https://soundcloud.com/you/apps. Assign a custom redirect uri to let SoundCloud know how to route back to the app with the token. We chose fuse-soundcloud://fuse for our app, but you'll need to come up with a new one.
 
-Copy the client it and client secret to SoundCloud/SoundCloudConfig.js
+Add the uri scheme definition to the FuseCloud/FuseCloud.unoproj file (swap fuse-soundcloud with your scheme):
+
+	"Mobile":{
+		"UriScheme": "fuse-soundcloud",
+		"Orientations": "Portrait"
+	},
+
+Copy the client id and client secret to SoundCloud/SoundCloudConfig.js
 
 Start Fuse preview:
 - iOS - `fuse preview -tios`
