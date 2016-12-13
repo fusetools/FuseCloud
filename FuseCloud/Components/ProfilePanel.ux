@@ -1,0 +1,28 @@
+<StackPanel ux:Class="FuseCloud.ProfilePanel" ClipToBounds="true">
+	
+	<JavaScript>
+		var Login = require("FuseCloud/Login");
+		exports.me = Login.me;
+	</JavaScript>
+	
+	<Image Url="{me.avatar_url}" Layer="Background"  Alignment="TopCenter" ContentAlignment="Center" StretchMode="UniformToFill" Width="100%"  Height="170" Opacity="0.2">
+		<Blur Radius="20"/>
+	</Image>
+	
+	<Grid Columns="auto,auto,1*" Margin="20">
+		<FuseCloud.UserThumbnail Url="{me.avatar_url}" Width="80" Height="80"/>
+		<Rectangle Width="1" Color="DarkSeparatorColor" Margin="20,0" Opacity="0.4"/>
+		<StackPanel Alignment="VerticalCenter">
+			<Text Value="{me.username}" Color="DarkTextColor" Alignment="Left" FontSize="24" TextWrapping="Wrap" Margin="0,0,0,10" MaxLength="30"/>
+			<Text Value="{me.full_name}" Color="DarkTextColor"  TextWrapping="Wrap" Alignment="Left" />
+			<Text Value="{me.country}" Color="DarkTextColor" TextWrapping="Wrap" Alignment="Left"/>
+		</StackPanel>
+	</Grid>
+	
+	<Panel  Margin="20,0,20,10">
+		<Text Value="{me.followers_count_text}" Color="DarkTextColor" Alignment="Left" />
+		<Text Value="{me.followings_count_text}" Color="DarkTextColor" Alignment="Center" />
+		<Text Value="Log Out" Color="ThemeColor" Clicked="{loginLogoutClicked}" Alignment="Right"  />
+	</Panel>
+	
+</StackPanel>

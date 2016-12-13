@@ -1,0 +1,19 @@
+<Panel ux:Class="FuseCloud.TrackLoadingSpinner" StrokeWidth="4">
+	<float ux:Property="StrokeWidth" />
+	<WhileTrue Value="true">
+		<Cycle Target="circle.EndAngleDegrees" Low="40" High="280" Frequency="0.4" />
+		<Spin Target="circle" Frequency="0.8" />
+	</WhileTrue>
+	<Circle ux:Name="circle" StartAngleDegrees="0" EndAngleDegrees="30">
+		<Stroke Width="{Property this.StrokeWidth}" Color="#f5f5f5" />
+	</Circle>
+	<Circle Opacity="0.4">
+		<Stroke Width="4" Color="#f5f5f5"/>
+	</Circle>
+	<AddingAnimation>
+		<Change this.Opacity="0" Duration="0.15"/>
+	</AddingAnimation>
+	<RemovingAnimation>
+		<Change this.Opacity="0" Duration="0.15"/>
+	</RemovingAnimation>
+</Panel>

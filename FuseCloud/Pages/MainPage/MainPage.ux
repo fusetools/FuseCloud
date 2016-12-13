@@ -1,0 +1,69 @@
+<DockPanel ux:Class="FuseCloud.MainPage">
+	<Router ux:Dependency="router" />
+	
+	<StatusBarBackground Dock="Top"/>
+
+	<WhileTrue  Bypass="Never" Value="{isNotStoppedOrError}">
+		<Change playingTabItem.Visibility="Visible" /> <!--Value="{isNotStoppedOrError}"-->
+		<Change playingTabItem.LayoutRole="Standard" />
+		<Change tabBar.ColumnCount="4" />
+	</WhileTrue>
+	
+	<Panel Dock="Bottom" Height="55">
+		<Shadow Size="2" Distance="1" Angle="-90" Color="#00000015"/>
+		<Rectangle ux:Name="pageControlIndicator" Height="2" Color="ThemeColor"
+				   LayoutMaster="searchTabItem" Alignment="Bottom">
+			<LayoutAnimation>
+				<Move RelativeTo="PositionChange" X="1" Duration="0.25" Easing="CircularInOut"/>
+			</LayoutAnimation>
+		</Rectangle>
+		<Panel ux:Class="FuseCloud.TabBarItem" Margin="15,0" HitTestMode="LocalBounds"/>
+		<Grid ux:Name="tabBar" Color="White" ColumnCount="3" >
+			<FuseCloud.TabBarItem ux:Name="newsFeedTabItem" Opacity="0.6" Clicked="{gotoNewsFeed}">
+				<FuseCloud.NewsFeedIcon />
+			</FuseCloud.TabBarItem>
+			<FuseCloud.TabBarItem ux:Name="searchTabItem" Opacity="0.6" Clicked="{gotoSearch}">
+				<FuseCloud.SearchIcon />
+			</FuseCloud.TabBarItem>
+			<FuseCloud.TabBarItem ux:Name="favoritesTabItem" Opacity="0.6" Clicked="{gotoFavorites}">
+				<FuseCloud.ProfileIcon /><!-- get favorites icon instead -->
+			</FuseCloud.TabBarItem>
+			<FuseCloud.TabBarItem LayoutRole="Inert" ux:Name="playingTabItem" Opacity="0.6" Visibility="Hidden" Clicked="{pushCurrentTrack}">
+				<FuseCloud.EqualizerIcon/>
+			</FuseCloud.TabBarItem>
+		</Grid>
+	</Panel>
+	
+	<PageControl ux:Name="pageControl" Active="searchPage" InactiveState="Unchanged">
+		<NavigationMotion GotoDuration="0.3" GotoEasing="QuadraticInOut" />
+		
+		<Page ux:Name="newsFeedPage" HitTestMode="LocalBoundsAndChildren">
+			<FuseCloud.NewsFeedPage router="router"/>
+			<WhileActive Threshold="0.5">
+				<Set pageControlIndicator.LayoutMaster="newsFeedTabItem" />
+				<Change newsFeedTabItem.Opacity="1" Duration="0.2" Delay="0.2"/>
+			</WhileActive>
+		</Page>
+		
+		<Page ux:Name="searchPage" ClipToBounds="True">
+			<FuseCloud.SearchPage router="router"/>
+			<WhileActive Threshold="0.5">
+				<Set pageControlIndicator.LayoutMaster="searchTabItem" />
+				<Change searchTabItem.Opacity="1" Duration="0.2" Delay="0.2"/>
+			</WhileActive>
+		</Page>
+		
+		<Page ux:Name="favoritesPage" >
+			<FuseCloud.FavoritesPage router="router"/>
+			<WhileActive Threshold="0.5">
+				<Set pageControlIndicator.LayoutMaster="favoritesTabItem" />
+				<Change favoritesTabItem.Opacity="1" Duration="0.2" Delay="0.2"/>
+			</WhileActive>
+		</Page>
+		
+		<LayoutAnimation>
+			<Resize RelativeTo="SizeChange" Y="1" Duration="0.3"/>
+		</LayoutAnimation>
+	</PageControl>
+	
+</DockPanel>

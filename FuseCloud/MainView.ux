@@ -1,0 +1,38 @@
+<App Background="LightBackgroundColor">
+	<iOS.StatusBarConfig Style="Dark" ux:Name="iosStyle"/>
+	<Android.StatusBarConfig Color="ThemeColor" ux:Name="androidStyle"/>
+
+	<JavaScript File="MainView.js" />
+	
+	<Router ux:Name="router"/>
+	
+	<DockPanel>
+		<Panel>
+			<Navigator DefaultTemplate="main" GotoState="Unchanged">
+				<FuseCloud.MainPage ux:Name="main" router="router">
+					<WhileInactive Threshold="0.001">
+						<Change main.Visibility="Hidden" Delay="1"/>
+					</WhileInactive>
+				</FuseCloud.MainPage>
+				<!-- Fails when a non-template as there is no transition on the page itself, just the inner content. It relies on this page being removed it seems. -->
+				<FuseCloud.CommentsPage ux:Template="comments" router="router" ZOffset="3">
+					<WhileActive>
+						<Change iosStyle.Style="Light"/>
+						<Change androidStyle.Color="#4B4B4B"/>
+					</WhileActive>
+				</FuseCloud.CommentsPage>  
+				<FuseCloud.TrackDetailsPage ux:Name="track" router="router" ZOffset="2">
+					<WhileActive>
+						<Change iosStyle.Style="Light"/>
+						<Change androidStyle.Color="#4B4B4B"/>
+					</WhileActive>
+					<WhileInactive Threshold="0.001">
+						<Change androidStyle.Color="ThemeColor"/>
+						<Change track.Visibility="Hidden" Delay="1"/>
+					</WhileInactive>
+				</FuseCloud.TrackDetailsPage>
+			</Navigator>
+		</Panel>
+		<BottomBarBackground Dock="Bottom" IncludesKeyboard="false"/>
+	</DockPanel>
+</App>

@@ -1,0 +1,96 @@
+<Page ux:Class="FuseCloud.FavoritesPage">
+	
+	<Router ux:Dependency="router" />
+
+	<JavaScript File="Favorites.js" />
+
+	<!-- SnapMinTransform="false" is needed for PullToReloadSpinner to work -->
+	<DockPanel>
+		<FuseCloud.WelcomeItem Header="Welcome to your profile" StorageId="id1" Dock="Top"
+							   Description="Here you can view your personal information and favorited tracks" />
+		
+		<ScrollView ux:Name="sw" SnapMinTransform="false">
+			<WhileFalse Value="{isLoggedIn}">
+				<Change sw.Visibility="Collapsed" />
+			</WhileFalse>
+			
+			<DockPanel>
+				<FuseCloud.PullToReloadSpinner>
+					<FuseCloud.OnReload>
+						<Callback Handler="{reloadHandler}" />
+					</FuseCloud.OnReload>
+				</FuseCloud.PullToReloadSpinner>
+				
+				<StackPanel ClipToBounds="true">		
+					<WhileTrue Value="{isLoggedIn}" >
+						<FuseCloud.ProfilePanel />
+						<WhileEmpty Items="{favoriteTracks}">
+							<FuseCloud.NoFavoritesIcon Margin="0,30"/>
+							<Text Value="You have no favorite tracks" FontSize="19" Margin="0,15" Alignment="Center"/>
+						</WhileEmpty>
+					</WhileTrue>
+					
+					<Selection MinCount="0" MaxCount="1"/>
+					
+					<Each Items="{favoriteTracks}">
+						<Panel ux:Name="trackItem">
+							<Selectable Value="{id}"/>
+							<LayoutAnimation>
+								<Move RelativeTo="PositionChange" Vector="1" Duration="0.3" Easing="CubicInOut"/>
+							</LayoutAnimation>
+							<FuseCloud.TrackListItem ux:Name="tli" Title="{title}" Artist="{artist}"
+													 Duration="{durationString}" Artwork="{artwork_url}">
+								<Tapped>
+									<Callback Handler="{pushSongDetails}" />
+								</Tapped>
+								
+								<SwipeGesture ux:Name="sg" Direction="Left" Type="Active" LengthNode="unlikeButton"/>
+								<SwipingAnimation Source="sg">
+									<Move X="-1" Duration="1" RelativeTo="Size" RelativeNode="unlikeButton"/>
+								</SwipingAnimation>
+								<Swiped Source="sg">
+									<ToggleSelection />
+								</Swiped>
+
+								<Deselected>
+									<Set sg.IsActive="false" />
+								</Deselected>
+							</FuseCloud.TrackListItem>
+
+							<Panel ux:Name="unlikeButton" Color="#ee5c42"
+								   Clicked="{unlikeTrack}" Width="25%" Alignment="Right">
+								<Text Value="UNLIKE" Alignment="Center" Color="#fff"/>
+							</Panel>
+
+							<AddingAnimation>
+								<Change trackItem.Opacity="0" Duration="0.2" Easing="QuadraticInOut" />
+							</AddingAnimation>
+							<RemovingAnimation>
+								<Change trackItem.Opacity="0" Duration="0.2" Easing="QuadraticInOut" />
+							</RemovingAnimation>
+						</Panel>
+					</Each>
+					
+				</StackPanel>	
+			</DockPanel>
+
+			<LayoutAnimation>
+				<Move RelativeTo="PositionChange" Vector="1" Duration="0.3" Easing="CubicInOut"/>
+			</LayoutAnimation>
+		</ScrollView>
+	</DockPanel>
+
+	<WhileFalse Value="{isLoggedIn}">
+		<Panel Alignment="Center">
+			<FuseCloud.PleaseLogIn Header="Profile and Favorites" Text="for you favorite tracks">
+				<FuseCloud.FavoritesLoggedOutIcon>
+					<Scaling Factor="0.75"/>
+				</FuseCloud.FavoritesLoggedOutIcon>
+			</FuseCloud.PleaseLogIn>
+			<Clicked>
+				<Callback Handler="{loginLogoutClicked}" />
+			</Clicked>
+		</Panel>
+	</WhileFalse>
+
+</Page>

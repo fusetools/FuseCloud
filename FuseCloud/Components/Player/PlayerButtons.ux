@@ -1,0 +1,75 @@
+<Panel ux:Class="FuseCloud.PlayerButtons">
+	
+	<Panel ux:Class="FuseCloud.PlayerButton" HitTestMode="LocalBoundsAndChildren">
+		<Clicked>
+			<Scale Factor="0.9" Duration="0.05" Easing="QuadraticInOut"/>
+		</Clicked>
+	</Panel>
+	
+	<FuseCloud.PlayerButton ux:Class="FuseCloud.PlayButton">
+		<JavaScript>
+			var Playlist = require("FuseCloud/Playlist");
+			var PLAYING_STATE = require("FuseCloud/PlayingState");
+			
+			exports.playPause = function(){
+				if (Playlist.playingState.value === PLAYING_STATE.PAUSED) {
+					Playlist.resume();
+				} else if (Playlist.playingState.value === PLAYING_STATE.STOPPED) {
+					Playlist.play();
+				} else {
+					console.log("JS pausing");
+					Playlist.pause();
+				}
+			}
+				
+			exports.isPlaying = Playlist.isPlaying;
+			exports.isLoading = Playlist.isLoading;
+		</JavaScript>
+		<Clicked>
+			<Callback Handler="{playPause}"/>
+		</Clicked>
+		<WhileTrue Value="{isLoading}">
+			<FuseCloud.TrackLoadingSpinner />
+			<Change playPausePanel.Opacity="0"/>
+		</WhileTrue>
+		<Panel ux:Name="playPausePanel">
+			<WhileFalse Value="{isPlaying}">
+				<FuseCloud.PlayIcon/>
+			</WhileFalse>
+			<WhileTrue Value="{isPlaying}">
+				<FuseCloud.PauseIcon Margin="5" BarColor="White"/>
+			</WhileTrue>
+		</Panel>
+	</FuseCloud.PlayerButton>
+	
+	<FuseCloud.PlayerButton ux:Class="FuseCloud.PlayPreviousButton">
+		<JavaScript>
+			var Playlist = require("FuseCloud/Playlist");
+			exports.hasPrevious = Playlist.hasPrevious.map(function(x){
+				return x ? 1 : 0.4 ;
+			});
+			exports.playPrevious = Playlist.playPrevious;
+		</JavaScript>
+		<Panel Clicked="{playPrevious}" HitTestMode="LocalBounds">
+			<FuseCloud.SeekLeftIcon>
+				<DataBinding Target="this.Opacity" Key="hasPrevious" />
+			</FuseCloud.SeekLeftIcon>
+		</Panel>
+	</FuseCloud.PlayerButton>
+	
+	<FuseCloud.PlayerButton ux:Class="FuseCloud.PlayNextButton">
+		<JavaScript>
+			var Playlist = require("FuseCloud/Playlist");
+			exports.hasNext = Playlist.hasNext.map(function(x){
+				return x ? 1 : 0.4 ;
+			});
+			exports.playNext = Playlist.playNext;
+		</JavaScript>
+		<Panel Clicked="{playNext}" HitTestMode="LocalBounds">
+			<FuseCloud.SeekRightIcon>
+				<DataBinding Target="this.Opacity" Key="hasNext" />
+			</FuseCloud.SeekRightIcon>
+		</Panel>
+	</FuseCloud.PlayerButton>
+	
+</Panel>

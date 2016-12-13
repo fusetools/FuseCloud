@@ -1,0 +1,36 @@
+<Panel ux:Class="FuseCloud.PullToReloadSpinner" ClipToBounds="True" Dock="Top">
+	
+	<UserEvent ux:Name="onReload" />
+	<OnUserEvent ux:Class="FuseCloud.OnReload" EventName="onReload"/>
+
+	<JavaScript>
+		module.exports.reload = function(){ onReload.raise(); };
+	</JavaScript>
+	
+	<Panel ux:Name="pullToRefreshPanel" Height="0" Dock="Top" MinHeight="0" Alignment="Top">
+		<Panel Alignment="Bottom" Height="75">
+			<FuseCloud.ReloadSpinnerIcon Alignment="Center">
+				<Rotation ux:Name="rotateStart" />
+			</FuseCloud.ReloadSpinnerIcon>
+		</Panel>
+
+		<WhileTrue ux:Name="spin">
+		    <Cycle Frequency="1" Low="0" High="-360" Target="rotateStart.Degrees"  Waveform="Sawtooth" Easing="CircularInOut"/>
+		</WhileTrue>
+
+		<WhileTrue ux:Name="retainSpace">
+			<Change pullToRefreshPanel.MinHeight="75" Duration="0" DurationBack="0.3" Easing="CircularIn" />
+		</WhileTrue>
+		
+		<PullToReload IsLoading="{isLoading}" ReloadHandler="{reload}">
+			<State ux:Binding="Loading">
+				<Change retainSpace.Value="true" DurationBack="0.5" />
+				<Change spin.Value="true" />
+			</State>
+		</PullToReload>
+
+		<ScrollingAnimation Range="SnapMin">
+			<Change pullToRefreshPanel.Height="150"/>
+		</ScrollingAnimation>
+	</Panel>
+</Panel>

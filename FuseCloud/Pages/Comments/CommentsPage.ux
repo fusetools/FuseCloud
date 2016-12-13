@@ -1,0 +1,58 @@
+<Page ux:Class="FuseCloud.CommentsPage" Transition="None">	
+	<DockLayout />
+	<StatusBarBackground Dock="Top"/>
+	
+	<Transition>
+		<Move Target="mainContent" Y="1" RelativeTo="ParentSize" Duration="0.35" DelayBack="0.1"
+			EasingBack="DecelerationCurve" Easing="AccelerationCurve"/>
+		<Change bg.Opacity="0" Duration="0.1" Delay="0.1" DelayBack="0"/>
+		<Change this.Visibility="Hidden" DelayBack="0" Delay="0.5"/>
+    </Transition>
+	
+	<JavaScript File="../TrackPage/TrackDetails.js" />
+	<Router ux:Dependency="router"/>
+	<Page ux:Name="mainContent" Margin="10" ClipToBounds="True" Color="White"
+		Freeze="WhileNavigating">
+		<Panel Padding="15" Clicked="{goBack}" HitTestMode="LocalBounds" Alignment="TopRight">
+			<FuseCloud.CrossIcon Height="22" Width="22" Alignment="Center" CrossColor="DarkTextColor"/>
+
+			<Circle Color="White" Smoothness="30" Margin="-20"/>
+		</Panel>
+		<ScrollView ClipToBounds="False">  
+			<StackPanel>
+				<Text Margin="15" Alignment="CenterLeft" FontSize="20" Value="Comments"/>
+				<WhileTrue Value="{isLoggedIn}">
+					<Grid Columns="80,1*" Padding="20,20,10,20">
+						<FuseCloud.UserThumbnail Alignment="VerticalCenter" Margin="8" Url="{me.avatar_url}" Width="40" Height="40"/>
+						<TextInput Value="{newCommentBody}" FontSize="16" TextColor="#000"
+								   TextWrapping="Wrap" ActionStyle="Send" Height="35" Margin="0,20,20,20" ActionTriggered="{addNewComment}"
+								   PlaceholderText="Add a comment" PlaceholderColor="#aaa" Alignment="VerticalCenter" >
+							<Rectangle Height="1" Color="#aaa" Dock="Bottom" />
+							<TextInputActionTriggered>
+								<ReleaseFocus />
+							</TextInputActionTriggered>
+						</TextInput>
+					</Grid>
+				</WhileTrue>
+				<Each Items="{comments}">
+					<Deferred>
+						<FuseCloud.DividerLine Alignment="Top"/>
+						<FuseCloud.Comment ux:Name="comment" ThumbnailUrl="{avatar_url}" Username="{username}" Body="{body}" />
+					</Deferred>
+				</Each>
+			</StackPanel>
+			<Scrolled To="End" Within="100">
+				<Callback Handler="{showMoreComments}" />
+			</Scrolled>
+		</ScrollView>
+	</Page>
+	
+	<Panel ux:Name="bg" Layer="Background" Color="#000">
+		<Panel Opacity="0.5" Height="120%" Margin="-10">
+			<FuseCloud.AlbumArt Width="20%" Height="20%" TransformOrigin="Center" Alignment="Center">
+				<Blur Radius="2"/>
+				<Scaling Factor="5" /> 
+			</FuseCloud.AlbumArt>
+		</Panel>
+	</Panel>
+</Page>

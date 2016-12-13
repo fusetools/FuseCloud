@@ -1,0 +1,17 @@
+<Container ux:Class="FuseCloud.PleaseLogIn" HitTestMode="LocalBounds" Subtree="iconPanel">
+	
+	<string ux:Property="Text"/>
+	<string ux:Property="Header" />
+	
+	<StackPanel Alignment="Center" ItemSpacing="10" ux:Binding="Children">
+		<Text Value="{Property Header}" Alignment="Center" FontSize="20"  TextColor="LightTextColor" />
+		<Panel ux:Name="iconPanel" />
+		<StackPanel Alignment="Center">
+			<StackPanel Orientation="Horizontal" Alignment="Center">
+				<Text Value="Please" TextColor="LightTextColor" TextAlignment="Center" TextWrapping="Wrap"/>
+				<Text Value="log in" TextColor="ThemeColor" TextAlignment="Center" TextWrapping="Wrap" Margin="5,0,5,0"/>
+			</StackPanel>
+			<Text Value="{Property this.Text}" TextColor="LightTextColor" TextAlignment="Center" TextWrapping="Wrap" Alignment="Center"/>
+		</StackPanel>
+	</StackPanel>
+</Container>

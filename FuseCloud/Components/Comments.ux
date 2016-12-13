@@ -1,0 +1,21 @@
+<Grid ux:Class="FuseCloud.Comment" Columns="60,1*" Rows="auto">
+	
+	<string ux:Property="ThumbnailUrl" />
+	<string ux:Property="Username" />
+	<string ux:Property="Body" />
+	
+	<FuseCloud.UserThumbnail Alignment="Top" Margin="20,20,0,0" Url="{Property this.ThumbnailUrl}"/>
+	<StackPanel Alignment="VerticalCenter" ItemSpacing="2" Padding="20,20,10,20">
+		<Text Value="{Property this.Username}" FontSize="16" Color="DarkTextColor"/>
+		<Text Value="{Property this.Body}" FontSize="16" Color="LightTextColor" TextWrapping="Wrap"/>
+	</StackPanel>
+	<AddingAnimation>
+		<Change this.Opacity="0" Duration="0.2" />
+	</AddingAnimation>
+	<RemovingAnimation>
+		<Change this.Opacity="0" Duration="0.2" />
+	</RemovingAnimation>
+	<LayoutAnimation>
+		<Move RelativeTo="PositionChange" Vector="1" Duration="0.2" />
+	</LayoutAnimation>
+</Grid>

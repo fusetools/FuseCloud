@@ -1,0 +1,73 @@
+<Panel ux:Class="FuseCloud.NewsFeedPage">
+	
+	<Router ux:Dependency="router" />
+	
+	<JavaScript File="NewsFeed.js" />
+	
+	<Panel>
+		<WhileTrue Value="{isLoggedIn}">
+			<WhileEmpty Items="{activities}">
+				<StackPanel Alignment="Center">
+					<FuseCloud.NewsFeedEmptyIcon />
+					<Text FontSize="19" Value="Your feed is empty" Margin="0,25,0,0"/>
+				</StackPanel>
+			</WhileEmpty>
+		</WhileTrue>
+
+		<DockPanel>
+
+			<FuseCloud.WelcomeItem Header="Welcome to your newsfeed" StorageId="id2" Dock="Top" Alignment="Top"
+								   Description="Here you can discover the latest releases and see what is trending right now" />
+			
+			<!-- SnapMinTransform="false" is needed for PullToReloadSpinner to work -->
+			<ScrollView ux:Name="sw" SnapMinTransform="false">
+				<WhileFalse Value="{isLoggedIn}">
+					<Change sw.Visibility="Collapsed" />
+				</WhileFalse>
+				
+				<DockPanel>
+					<FuseCloud.PullToReloadSpinner>
+						<FuseCloud.OnReload>
+							<Callback Handler="{reloadHandler}" />
+						</FuseCloud.OnReload>
+					</FuseCloud.PullToReloadSpinner>
+					<StackPanel Color="LightBackgroundColor">
+
+						<Each Items="{activities}">
+							<Panel>
+								<Match Value="{type}">
+									<Case String="track">
+										<FuseCloud.TrackListItem Title="{origin.title}" Artist="{origin.artist}"
+																 Duration="{origin.durationString}" Artwork="{origin.artwork_url}"
+																 Clicked="{pushSongDetails}" Color="White"/>
+									</Case>
+									<Case String="track-repost">
+										<FuseCloud.TrackListItem Title="{origin.title}" Artist="{origin.artist}"
+																 Duration="{origin.durationString}" Artwork="{origin.artwork_url}"
+																 Clicked="{pushSongDetails}" Color="White"/>
+									</Case>
+									<Case String="post">
+										<FuseCloud.Comment ThumbnailUrl="{origin.avatar_url}" Username="{origin.username}" Body="{origin.body}" />
+									</Case>
+								</Match>
+							</Panel>
+						</Each>
+					</StackPanel>
+				</DockPanel>
+				<WhileScrollable ScrollDirections="Down" Invert="true">
+					<Callback Handler="{fetchMore}"/>
+				</WhileScrollable>
+			</ScrollView>
+		</DockPanel>
+		<WhileFalse Value="{isLoggedIn}">
+			<Panel Alignment="Center">
+				<FuseCloud.PleaseLogIn Header="News Feed" Text="to view your feed" Clicked="{loginLogoutClicked}">
+					<FuseCloud.NewsFeedLoggedOutIcon>
+						<Scaling Factor="0.5" />
+					</FuseCloud.NewsFeedLoggedOutIcon>
+				</FuseCloud.PleaseLogIn>
+			</Panel>
+		</WhileFalse>
+	</Panel>
+
+</Panel>

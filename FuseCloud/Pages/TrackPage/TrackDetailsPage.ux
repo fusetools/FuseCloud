@@ -1,0 +1,100 @@
+<Page ux:Class="FuseCloud.TrackDetailsPage" Color="#000" Transition="None" ClipToBounds="true"
+	Freeze="WhileNavigating">
+	
+	<StatusBarBackground Row="0"/>
+	
+	<EnteringAnimation>
+		<Move X="1" RelativeTo="Size" Duration="0.2" />
+	</EnteringAnimation>
+	<ExitingAnimation>
+		<Change this.Visibility="Hidden" Delay="0.1" />
+	</ExitingAnimation>
+	
+	<Router ux:Dependency="router"/>
+	<JavaScript File="TrackDetails.js" />
+	<GridLayout Rows="auto,2*,7*,2.5*" Columns="1*"/>
+
+	<Panel Row="3">
+		<WhileActive>		
+			<FuseCloud.Player ux:Name="player" router="router" Margin="20,5">
+				<AddingAnimation>
+					<Change player.Opacity="0" Duration="0.3" DelayBack="0.35" />
+				</AddingAnimation>
+				<RemovingAnimation>
+					<Change player.Opacity="0" Duration="0.12" />
+				</RemovingAnimation>
+			</FuseCloud.Player>
+		</WhileActive>
+	</Panel>
+
+	<DockPanel Row="1">
+		<Grid Columns="2*,7*,2*" Dock="Top" Padding="26,20">
+			<Panel Margin="-15,-15,0,0" Clicked="{goBack}" HitTestMode="LocalBoundsAndChildren">
+				<FuseCloud.BackIcon Padding="15"/>
+			</Panel>
+			<StackPanel>
+				<Deferred>
+					<Text Color="White" Value="{currentTrack.title}" FontSize="18" Alignment="Center" />
+					<Text Color="White" Value="{currentTrack.artist}" FontSize="18" Alignment="Center" />
+					<StackPanel Orientation="Horizontal" Alignment="Center" Opacity="0.8">
+						<Text TextColor="LightBackgroundColor" Value="{currentTrack.playback_count}"/>
+						<Text Margin="5,0,0,0" TextColor="LightBackgroundColor" Value="listens"/>
+					</StackPanel>
+				</Deferred>
+			</StackPanel>
+			<Panel>
+				<WhileTrue Value="{isLoggedIn}">
+					<Panel Clicked="{likeUnlike}" HitTestMode="LocalBounds" Margin="0,-15,-15,0">
+						<FuseCloud.LikeIcon Opacity="{favoritedCurrentTrackIcon}"/>
+						<FuseCloud.LikeIconPurple />
+					</Panel>
+				</WhileTrue>
+			</Panel>
+		</Grid>
+	</DockPanel>
+
+	<Grid Row="2" Rows="1*,auto" Width="85%">
+		<Panel Aspect="1" BoxSizing="FillAspect">
+			<SwipeGesture ux:Name="leftSwipe" Direction="Left"/>
+			<SwipeGesture ux:Name="rightSwipe" Direction="Right"/>
+
+			<Swiped Source="leftSwipe">
+				<Callback Handler="{next}" />
+			</Swiped>
+			<Swiped Source="rightSwipe">
+				<Callback Handler="{previous}" />
+			</Swiped>
+			
+			<Shadow Size="2" Distance="2" Color="#0004"/>
+			<Image ux:Class="FuseCloud.AlbumArt" Url="{currentTrack.artwork_500}" StretchMode="UniformToFill">
+				<WhileLoading>
+					<Image ux:Name="placeholderImage" Url="{currentTrack.artwork_url}">
+						<RemovingAnimation>
+							<Change placeholderImage.Opacity="0" Duration="0.5" />
+						</RemovingAnimation>
+					</Image>
+				</WhileLoading>
+			</Image>
+			<FuseCloud.AlbumArt ux:Name="albumArt" />
+		</Panel>
+		<Grid Columns="60,1*,auto" Padding="0,10,0,6">
+			<Deferred>
+				<FuseCloud.UserThumbnail Url="{currentTrackUser.avatar_url}" Width="45" Height="45" Alignment="Left"/>
+				<StackPanel Alignment="CenterLeft">
+					<Text Value="{currentTrackUser.username}" TextColor="White" FontSize="18" MaxLength="16" TextTruncation="Standard" Margin="0,0,10,0" />
+					<Text Value="{currentTrackUser.followers_count_text}" TextColor="LightBackgroundColor" FontSize="16" Opacity="0.8" Margin="0,0,10,0" />
+				</StackPanel>
+				<Panel Width="58" Height="44" Opacity="0.65">
+					<FuseCloud.PoweredBySoundCloudIcon StretchMode="UniformToFill"/>
+				</Panel>
+			</Deferred>
+		</Grid>
+	</Grid>
+
+	<Panel Layer="Background" Opacity="0.5" Height="120%" Margin="-10">
+		<FuseCloud.AlbumArt Width="20%" Height="20%" TransformOrigin="Center" Alignment="Center">
+			<Blur Radius="2"/>
+			<Scaling Factor="5" />
+		</FuseCloud.AlbumArt>
+	</Panel>
+</Page>

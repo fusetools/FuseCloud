@@ -1,0 +1,58 @@
+<Page ux:Class="FuseCloud.SearchPage">
+	
+	<Router ux:Dependency="router" />
+	
+	<JavaScript File="Search.js" />
+	
+	<WhileEmpty Items="{trackList}">
+		<Panel>
+			<StackPanel Alignment="Center">
+				<FuseCloud.SearchGraphics Margin="32" />
+				<Text Color="LightTextColor" Value="Discover new tracks" />
+			</StackPanel>
+			<WhileKeyboardVisible>
+				<Move Y="-0.15" RelativeTo="Size" Duration="0.35" Easing="QuadraticInOut" EasingBack="QuadraticIn"/>
+			</WhileKeyboardVisible>
+		</Panel>
+	</WhileEmpty>
+	
+	<DockPanel>
+		<Panel Dock="Top" Margin="20" Height="40" Alignment="Top">
+			<Panel Clicked="{abortSearch}" HitTestMode="LocalBounds" Alignment="Right">
+				<FuseCloud.CrossIcon ux:Name="clearSearch" Height="16" Margin="12" CrossColor="VeryLightGray" /> 
+			</Panel>
+			<TextInput Value="{searchTerm}" ActionStyle="Search" ActionTriggered="{performSearch}" HitTestMode="LocalBoundsAndChildren"
+					   PlaceholderColor="LightPlaceholderTextColor" PlaceholderText="Search" Padding="20,0,0,0">
+				<Clicked>
+					<GiveFocus />
+				</Clicked>
+
+				<Rectangle Layer="Background" CornerRadius="4" Color="White">
+					<Stroke ux:Name="SearchBarStroke" Width="1" Color="LightSeparatorColor"/>
+					<Shadow ux:Name="SearchBarShadow" Distance="1" Color="#00000019" Size="1" Angle="90" />
+				</Rectangle>
+				
+				<TextInputActionTriggered>
+					<ReleaseFocus />
+				</TextInputActionTriggered>
+				
+				<WhileFocused>
+					<Change Target="SearchBarStroke.Color" Value="#ECD4F3" />
+					<Change Target="SearchBarShadow.Color" Value="0, 0, 0, 0.2" />
+				</WhileFocused>
+				
+				<WhileContainsText>
+					<Change clearSearch.CrossColor="MediumTextColor"/>
+				</WhileContainsText> 
+			</TextInput>
+		</Panel>
+		
+		<ScrollView Margin="0,0,0,10" ClipToBounds="false">
+			<StackPanel>
+				<Each Items="{trackList}">
+					<FuseCloud.TrackListItem Title="{title}" Artist="{artist}" Duration="{durationString}" Artwork="{artwork_url}" Clicked="{pushSongDetails}" />
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</Page>

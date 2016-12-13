@@ -1,0 +1,37 @@
+<Panel ux:Class="FuseCloud.Player">
+	
+ 	<Router ux:Dependency="router"/>
+	
+	<string ux:Property="Url" />
+
+	<JavaScript File="TrackPlayer.js" />
+
+	<StackPanel ux:Class="FuseCloud.CommentsButton" ItemSpacing="4" ux:Name="MoreButton" Background="#fff0"> 
+ 		<WhilePressed>
+			<Scale Target="MoreButton" Factor="0.95"/>
+		</WhilePressed>
+		<Circle Width="4" Height="4" Color="White"/>
+		<Circle Width="4" Height="4" Color="White"/>
+		<Circle Width="4" Height="4" Color="White"/>
+	</StackPanel>
+
+	<Grid RowCount="2">
+		<Panel>
+			<Panel Width="40" Alignment="Right" Clicked="{gotoComments}" HitTestMode="LocalBounds">
+				<FuseCloud.CommentsButton Alignment="Center"/>
+			</Panel>
+			<Grid ColumnCount="3" Width="80%" Height="50" Alignment="Center">
+				<FuseCloud.PlayPreviousButton  Column="0"/>
+				<FuseCloud.PlayButton Column="1"/>
+				<FuseCloud.PlayNextButton  Column="2"/>
+			</Grid>
+		</Panel>
+		
+		<FuseCloud.TrackBar Height="50">
+			<DockPanel Dock="Bottom">
+				<Text Value="{progress}" Color="White"/>
+				<Text Value="{duration}" Dock="Right" Color="White" Opacity="0.6"/>
+			</DockPanel>
+		</FuseCloud.TrackBar>
+	</Grid>
+</Panel>

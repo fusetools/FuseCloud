@@ -1,0 +1,34 @@
+<DockPanel ux:Class="FuseCloud.TrackListItem" Color="White" HitTestMode="LocalBoundsAndChildren" Title="Track title" Artist="Artist name" Duration="Track duration">
+	
+	<string ux:Property="Title" />
+	<string ux:Property="Artist" />
+	<string ux:Property="Duration" />
+	<string ux:Property="Artwork" />
+	
+	<FuseCloud.DividerLine Dock="Top"  />
+	
+	<WhileFalse Bypass="Never" Value="false">
+		<Image Dock="Left" Url="{Property this.Artwork}" Width="60" Height="60" Margin="10, 10, 0, 10">
+			<WhileLoading>
+				<Rectangle ux:Name="loadingCover" Color="#fdfdfd">
+					<RemovingAnimation>
+						<Change loadingCover.Opacity="0" Duration="0.2" />
+					</RemovingAnimation>
+				</Rectangle>
+			</WhileLoading>
+		</Image>
+	</WhileFalse>
+	
+	<WhileTrue Value="false" Bypass="Never">
+		<Panel Dock="Left" Width="60" Height="60" Margin="10, 10, 0, 10">
+			<FuseCloud.EqualizerIcon/>
+		</Panel>
+	</WhileTrue>
+	
+	<Grid RowCount="2" Columns="1*,80" Padding="20,20,10,20">
+		<Text Value="{Property this.Title}" Color="DarkTextColor" FontSize="16" ColumnSpan="2" />
+		<Text Value="{Property this.Artist}" Color="LightTextColor" Alignment="Bottom" ClipToBounds="True" FontSize="16" />
+		<Text Value="{Property this.Duration}" Color="LightTextColor" Alignment="BottomRight" FontSize="12" />
+	</Grid>
+	
+</DockPanel>

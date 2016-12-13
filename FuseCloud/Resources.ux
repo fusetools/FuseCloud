@@ -1,0 +1,196 @@
+<Panel ux:Class="FuseCloud.MyResources">
+
+	<CubicBezierEasing ux:Global="DecelerationCurve" ControlPoints="0.0, 0.0, 0.2, 1.0" />
+	<CubicBezierEasing ux:Global="AccelerationCurve" ControlPoints="0.4, 0.0, 1.0, 1.0" />
+
+	<Image ux:Class="FuseCloud.BackIcon" Width="36" Height="36">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/ic_arrow_back_white_48pt_2x.png" Density="0" />
+			<FileImageSource File="Assets/ic_arrow_back_white_48pt_3x.png" Density="1" />
+			<FileImageSource File="Assets/ic_arrow_back_white_48pt.png" Density="2" />
+		</MultiDensityImageSource>
+	</Image>
+
+	<Image ux:Class="FuseCloud.ReloadSpinnerIcon" Width="48" Height="48" Anchor="54%,50%" TransformOrigin="Anchor">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Reloading.png" Density="1"/>
+			<FileImageSource File="Assets/Reloading@2x.png" Density="2"/>
+			<FileImageSource File="Assets/Reloading@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Panel ux:Class="FuseCloud.CrossIcon" Width="36" Height="36" Background="#fff0">
+		<Rectangle Color="{Property this.CrossColor}" Width="2"  CornerRadius="4" >
+			<Rotation Degrees="45"/>
+		</Rectangle>
+		<Rectangle Color="{Property this.CrossColor}" Width="2"   CornerRadius="4" >
+			<Rotation Degrees="-45"/>
+			<float4 ux:Property="CrossColor"/>
+		</Rectangle>
+		<WhilePressed>
+			<Scale Target="this" Factor="0.9"/>
+		</WhilePressed>
+	</Panel>
+	
+	<Image ux:Class="FuseCloud.NewsFeedIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Newsfeed.png" Density="1"/>
+			<FileImageSource File="Assets/Newsfeed@2x.png" Density="2"/>
+			<FileImageSource File="Assets/Newsfeed@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.LikeIcon" StretchMode="PixelPrecise" >
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/LikeIcon.png" Density="1"/>
+			<FileImageSource File="Assets/LikeIcon@2x.png" Density="2"/>
+			<FileImageSource File="Assets/LikeIcon@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.LikeIconPurple" StretchMode="PixelPrecise" >
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/LikeIconPurple.png" Density="1"/>
+			<FileImageSource File="Assets/LikeIconPurple@2x.png" Density="2"/>
+			<FileImageSource File="Assets/LikeIconPurple@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.PlayIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/PlayButton.png" Density="1"/>
+			<FileImageSource File="Assets/PlayButton@2x.png" Density="2"/>
+			<FileImageSource File="Assets/PlayButton@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Panel ux:Class="FuseCloud.PauseIcon" BarColor="#D9D6D3" Aspect="1" BoxSizing="FillAspect">
+		<float4 ux:Property="BarColor" />
+		<Grid ColumnCount="2">
+			<Rectangle Color="{Property this.BarColor}" Alignment="Left" Width="55%"/>
+			<Rectangle Color="{Property this.BarColor}" Alignment="Right" Width="55%"/>
+		</Grid>
+	</Panel>
+	
+	<Image ux:Class="FuseCloud.ProfileIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Profile.png" Density="1"/>
+			<FileImageSource File="Assets/Profile@2x.png" Density="2"/>
+			<FileImageSource File="Assets/Profile@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.SearchGraphics" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/SearchGraphic.png" Density="1"/>
+			<FileImageSource File="Assets/SearchGraphic@2x.png" Density="2"/>
+			<FileImageSource File="Assets/SearchGraphic@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.NotLoggedInGraphics" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/NotLoggedIn.png" Density="1"/>
+			<FileImageSource File="Assets/NotLoggedIn@2x.png" Density="2"/>
+			<FileImageSource File="Assets/NotLoggedIn@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.SearchIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Search.png" Density="1"/>
+			<FileImageSource File="Assets/Search@2x.png" Density="2"/>
+			<FileImageSource File="Assets/Search@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.SeekLeftIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/RewindButton.png" Density="1"/>
+			<FileImageSource File="Assets/RewindButton@2x.png" Density="2"/>
+			<FileImageSource File="Assets/RewindButton@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.SeekRightIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/ForwardButton.png" Density="1"/>
+			<FileImageSource File="Assets/ForwardButton@2x.png" Density="2"/>
+			<FileImageSource File="Assets/ForwardButton@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.FavoritesLoggedOutIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Favorites_Logged_Out.png" Density="0" />
+			<FileImageSource File="Assets/Favorites_Logged_Out@2x.png" Density="1" />
+			<FileImageSource File="Assets/Favorites_Logged_Out@3x.png" Density="2" />
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.NewsFeedEmptyIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Newfeed_Empty.png" Density="0" />
+			<FileImageSource File="Assets/Newfeed_Empty@2x.png" Density="1" />
+			<FileImageSource File="Assets/Newfeed_Empty@3x.png" Density="2" />
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.NewsFeedLoggedOutIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Newsfeed_Logged_Out.png" Density="0"/>
+			<FileImageSource File="Assets/Newsfeed_Logged_Out@2x.png" Density="1"/>
+			<FileImageSource File="Assets/Newsfeed_Logged_Out@3x.png" Density="2"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.NoFavoritesIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/No_Favorites.png" Density="0"/>
+			<FileImageSource File="Assets/No_Favorites@2x.png" Density="1"/>
+			<FileImageSource File="Assets/No_Favorites@3x.png" Density="2"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.SoundCloudIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Soundcloud_White@3x.png" Density="3"/>
+			<FileImageSource File="Assets/Soundcloud_White@2x.png" Density="2"/>
+			<FileImageSource File="Assets/Soundcloud_White.png" Density="1"/>
+		</MultiDensityImageSource>
+	</Image>
+	
+	<Image ux:Class="FuseCloud.PoweredBySoundCloudIcon" StretchMode="PixelPrecise">
+		<MultiDensityImageSource>
+			<FileImageSource File="Assets/Powered_By_Soundcloud_White.png" Density="1"/>
+			<FileImageSource File="Assets/Powered_By_Soundcloud_White@2x.png" Density="2"/>
+			<FileImageSource File="Assets/Powered_By_Soundcloud_White@3x.png" Density="3"/>
+		</MultiDensityImageSource>
+	</Image>
+
+	<Panel ux:Class="FuseCloud.BackArrowIcon" HitTestMode="LocalBoundsAndChildren">
+		<StackPanel Alignment="CenterLeft" Offset="8,0">
+			<Rectangle Width="2" Height="16" Offset="3,3" Color="{Property this.ArrowColor}" CornerRadius="2">
+				<Rotation Degrees="45"/>
+			</Rectangle>
+			<Rectangle Width="2" Height="16" Offset="3,-3" Color="{Property this.ArrowColor}" CornerRadius="2">
+				<Rotation Degrees="-45"/>
+			</Rectangle>
+		</StackPanel>
+		<Rectangle Width="24" Height="2" Color="{Property this.ArrowColor}" Alignment="Center" CornerRadius="2"/>
+		<float4 ux:Property="ArrowColor"/>
+	</Panel>
+	
+	<Circle ux:Class="FuseCloud.UserThumbnail" Width="42" Height="42">
+		<string ux:Property="Url" />
+		<ImageFill Url="{Property this.Url}" />
+	</Circle>
+	
+	<Panel ux:Class="FuseCloud.EqualizerIcon" Height="30" Width="24">
+		<Panel Alignment="Bottom">
+			<Rectangle Height="10" Width="4" Color="ThemeColor" CornerRadius="2" Alignment="BottomLeft" Margin="2" ux:Name="panel1"/>
+			<Rectangle Height="30" Width="4" Color="ThemeColor" CornerRadius="2" Alignment="BottomRight" Margin="2" ux:Name="panel2"/>
+			<Rectangle Height="16" Width="4" Color="ThemeColor"  CornerRadius="2" Alignment="Bottom" Margin="2" ux:Name="panel3"/>
+		</Panel>
+	</Panel>
+</Panel>

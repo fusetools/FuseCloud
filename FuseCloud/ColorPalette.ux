@@ -1,0 +1,19 @@
+<Panel ux:Class="FuseCloud.ColorPalette">
+	<float4 ux:Global="ThemeColor" ux:Value="#C06DD8"/>
+	<float4 ux:Global="AltThemeColor" ux:Value="#A745C4"/>
+
+	<float4 ux:Global="VeryLightGray" ux:Value="#AAAB" />
+	<float4 ux:Global="LightPlaceholderTextColor" ux:Value="#ABAAAB"/>
+
+	<float4 ux:Global="LightTextColor" ux:Value="#ACABAC"/>
+	<float4 ux:Global="MediumTextColor" ux:Value="#909090"/>
+	<float4 ux:Global="DarkTextColor" ux:Value="#4A4A4A"/>
+
+	<float4 ux:Global="LightBackgroundColor" ux:Value="#fafafa"/>
+	<float4 ux:Global="DarkBackgroundColor" ux:Value="#56616F"/>
+
+	<float4 ux:Global="LightSeparatorColor" ux:Value="#F9F9F9"/>
+	<float4 ux:Global="DarkSeparatorColor" ux:Value="#47515D"/>
+
+	<float4 ux:Global="LightContrastColor" ux:Value="#eeeeee"/>
+</Panel>

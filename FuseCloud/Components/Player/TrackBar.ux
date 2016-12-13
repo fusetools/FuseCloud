@@ -1,0 +1,23 @@
+<RangeControl ux:Class="FuseCloud.TrackBar" ux:Name="mySlider" HitTestMode="LocalBounds" Height="20" Minimum="0" Maximum="1">
+	<DockLayout />
+	
+	<JavaScript File="TrackBar.js" />
+
+	<LinearRangeBehavior/>
+	<ProgressAnimation>
+		<Change thumb.Width="100%"/>
+	</ProgressAnimation>
+
+	<Panel Height="4">
+		<DataBinding Target="mySlider.Value" Key="sliderValue" />
+		<Panel ux:Name="thumb" Alignment="Left" Width="0%" Height="4" HitTestMode="LocalBounds">
+			<Rectangle CornerRadius="2" Color="White"/>
+		</Panel>
+		<Rectangle Layer="Background" CornerRadius="2" Color="White" Opacity="0.4"/>
+	</Panel>
+	
+	<WhileInteracting>
+		<Callback Handler="{interacting}" />
+		<Callback Handler="{seekToSliderValue}" Direction="Backward" />
+	</WhileInteracting>
+</RangeControl>

@@ -1,0 +1,25 @@
+<DockPanel ux:Class="FuseCloud.WelcomeItem" Margin="0,15,0,5" Color="White" StorageId="0">
+
+	<string ux:Property="Header" />
+	<string ux:Property="Description" />
+	<string ux:Property="StorageId" />
+	
+	<JavaScript File="WelcomeItem.js" />
+
+	<Rectangle Height="1" Color="LightSeparatorColor" Dock="Top" />
+	<Rectangle Height="1" Color="LightSeparatorColor" Dock="Bottom" />
+	
+	<WhileTrue Value="{gotIt}">
+		<Move X="1" RelativeTo="Size" Duration="0.35" Easing="QuadraticOut"/>
+		<Change this.Visibility="Collapsed" Delay="0.35"/>
+	</WhileTrue>
+
+	<StackPanel Margin="15,10">
+		<Text Value="{Property this.Header}" TextAlignment="Center" FontSize="19" Margin="5"/>
+		<Text Value="{Property this.Description}" TextAlignment="Center" TextWrapping="Wrap" Margin="5" FontSize="15" />
+		<Panel Padding="5" Alignment="Right" Clicked="{okGotIt}" Margin="5" >
+			<Text Value="OKAY, GOT IT" Color="ThemeColor"/>
+		</Panel>
+	</StackPanel>
+	
+</DockPanel>

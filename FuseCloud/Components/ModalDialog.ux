@@ -1,0 +1,36 @@
+<Panel ux:Class="FuseCloud.ModalDialog" Margin="50,90" HitTestMode="None">
+	<JavaScript>
+		var ModalDialog = require("ModalDialog");
+		var Observable = require("FuseJS/Observable");
+		
+		var text = Observable("default text");
+		var isVisible = Observable(false);
+
+		function openDialog(text){
+			text.value = text;
+			isVisible.value = true;
+		}
+
+		function dismiss(){
+			isVisible.value = false;
+		}
+
+		ModalDialog.dialogDelegate = openDialog;
+
+		//openDialog("This is a test dialog");
+
+		module.exports = {
+			text,
+			isVisible,
+			dismiss
+		};
+	</JavaScript>
+	<WhileTrue Value="{isVisible}">
+		<Change this.HitTestMode="LocalBoundsAndChildren" />
+		<Grid Rows="3*,1*">
+			<Rectangle CornerRadius="5" Color="White" Layer="Background"/>
+			<Text Value="{text}" FontSize="24" Alignment="Center"/>
+			<Button Text="DISMISS" Clicked="{dismiss}"/>
+		</Grid>
+	</WhileTrue>
+</Panel>
