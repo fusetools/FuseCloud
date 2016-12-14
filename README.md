@@ -1,5 +1,7 @@
 # FuseCloud
 
+[![Build Status](https://travis-ci.org/fusetools/FuseCloud.svg?branch=master)](https://travis-ci.org/fusetools/FuseCloud)
+
 FuseCloud is a cross-platform music player that interacts with the SoundCloud<sup>®</sup> API, made with [Fuse](https://www.fusetools.com).
 It allows you to log in with your SoundCloud<sup>®</sup> user account and listen to your favorite tracks as well as discover new music through a news feed and conventional search.
 
