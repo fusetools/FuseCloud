@@ -1,5 +1,7 @@
 # FuseCloud
 
+[![Build Status](https://travis-ci.org/fusetools/FuseCloud.svg?branch=master)](https://travis-ci.org/fusetools/FuseCloud)
+
 FuseCloud is a cross-platform music player that interacts with the SoundCloud<sup>®</sup> API, made with [Fuse](https://www.fusetools.com).
 It allows you to log in with your SoundCloud<sup>®</sup> user account and listen to your favorite tracks as well as discover new music through a news feed and conventional search.
 
@@ -8,11 +10,6 @@ This app was made to serve as a reference app for people getting started with cr
 The app can be downloaded for both Android and iOS throug the [AppStore](https://itunes.apple.com/us/app/fusecloud/id1173516856?mt=8) and [Google Play Store](https://play.google.com/store/apps/details?id=com.fuse.fusecloud&hl=en).
 
 We've written about the motivation behind this project in [this medium article](https://medium.com/@fusetools/i-made-a-cross-platform-soundcloud-player-with-fuse-9fb1e62b7db1#.lhu76dfj6).
-
-## Branches
-
-This app uses features from an unreleased version of Fuse.
-Please use the `for-fuse-0.31`-branch to run this app with the currently released version of Fuse.
 
 ## Setup
 
