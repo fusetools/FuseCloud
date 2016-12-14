@@ -11,7 +11,8 @@
 	
 	<JavaScript File="../TrackPage/TrackDetails.js" />
 	<Router ux:Dependency="router"/>
-	<Page ux:Name="mainContent" Margin="10" ClipToBounds="True" Color="White">
+	<Page ux:Name="mainContent" Margin="10" ClipToBounds="True" Color="White"
+		Freeze="WhileNavigating">
 		<Panel Padding="15" Clicked="{goBack}" HitTestMode="LocalBounds" Alignment="TopRight">
 			<FuseCloud.CrossIcon Height="22" Width="22" Alignment="Center" CrossColor="DarkTextColor"/>
 
