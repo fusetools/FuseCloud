@@ -11,11 +11,6 @@ The app can be downloaded for both Android and iOS throug the [AppStore](https:/
 
 We've written about the motivation behind this project in [this medium article](https://medium.com/@fusetools/i-made-a-cross-platform-soundcloud-player-with-fuse-9fb1e62b7db1#.lhu76dfj6).
 
-## Branches
-
-This app uses features from an unreleased version of Fuse.
-Please use the `for-fuse-0.31`-branch to run this app with the currently released version of Fuse.
-
 ## Setup
 
 Register your app at https://soundcloud.com/you/apps. Assign a custom redirect uri to let SoundCloud<sup>®</sup> know how to route back to the app after the user has logged in. We chose fuse-soundcloud://fuse for our app, but you'll need to come up with a new one.
