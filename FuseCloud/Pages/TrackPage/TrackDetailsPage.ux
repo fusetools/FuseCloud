@@ -1,5 +1,4 @@
-<Page ux:Class="FuseCloud.TrackDetailsPage" Color="#000" Transition="None" ClipToBounds="true"
-	Freeze="WhileNavigating">
+<Page ux:Class="FuseCloud.TrackDetailsPage" Color="#000" Transition="None" ClipToBounds="true">
 	
 	<StatusBarBackground Row="0"/>
 	
