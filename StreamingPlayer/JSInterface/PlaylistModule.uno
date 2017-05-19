@@ -10,11 +10,11 @@ namespace StreamingPlayer
 {
 	[UXGlobalModule]
 	public class PlaylistModule : NativeModule
-	{	
+	{
 		static IStreamingPlayer _player;
 
 		static PlaylistModule _instance;
-		
+
 		NativeEvent _statusChanged;
 		NativeEvent _currentTrackChanged;
 		NativeEvent _hasNextChanged;
@@ -24,11 +24,11 @@ namespace StreamingPlayer
 		{
 			if (_instance != null) return;
 			_instance = this;
-			
+
 			if (_player == null) {
 				_player = StreamingPlayer.New();
 			}
-				
+
 			Resource.SetGlobalKey(_instance, "PlaylistPlayer");
 			AddMember(new NativeFunction("next", (NativeCallback)Next));
 			AddMember(new NativeFunction("previous", (NativeCallback)Previous));
@@ -54,13 +54,13 @@ namespace StreamingPlayer
 
 			_currentTrackChanged = new NativeEvent("currentTrackChanged");
 			AddMember(_currentTrackChanged);
-			
+
 			_hasNextChanged = new NativeEvent("hasNextChanged");
 			AddMember(_hasNextChanged);
-			
+
 			_hasPreviousChanged = new NativeEvent("hasPreviousChanged");
 			AddMember(_hasPreviousChanged);
-			
+
 			_player.StatusChanged += OnStatusChanged;
 			_player.CurrentTrackChanged += OnCurrentTrackChanged;
 			_player.HasNextChanged += OnHasNextChanged;
@@ -68,7 +68,7 @@ namespace StreamingPlayer
 
 			Fuse.Platform.Lifecycle.EnteringForeground += OnEnteringForeground;
 		}
-		
+
 		void OnEnteringForeground(ApplicationState state)
 		{
 			debug_log("Entering foreground: state: " + _player.Status);
