@@ -1,0 +1,14 @@
+root = true
+
+[*.{uno,ux,unoproj,unosln}]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{uno,ux,js,java,mm,h}]
+indent_style = tab
+
+[*.unoproj]
+indent_style = space
+indent_size = 2
