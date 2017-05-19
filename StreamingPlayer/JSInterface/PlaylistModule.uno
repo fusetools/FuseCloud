@@ -1,3 +1,4 @@
+using Fuse;
 using Uno;
 using Uno.UX;
 using Fuse.Scripting;
@@ -126,12 +127,9 @@ namespace StreamingPlayer
 		{
 			foreach (var a in args)
 			{
-				Track track;
-				if (Marshal.TryConvertTo<Track>(a, out track))
-				{
+				var track = Marshal.ToType<Track>(a);
+				if (a != null)
 					_player.AddTrack(track);
-				}
-
 			}
 			return null;
 		}
@@ -146,11 +144,9 @@ namespace StreamingPlayer
 				for (var i = 0; i < trackArray.Length; i++)
 				{
 					var a = trackArray[i];
-					Track track;
-					if (Marshal.TryConvertTo<Track>(a, out track))
-					{
-						tracks.Add(track);
-					}
+					var track = Marshal.ToType<Track>(a);
+					if (a != null)
+						_player.AddTrack(track);
 				}
 				_player.SetPlaylist(tracks.ToArray());
 			}
