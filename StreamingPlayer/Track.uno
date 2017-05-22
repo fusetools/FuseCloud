@@ -1,3 +1,4 @@
+using Fuse;
 using Uno;
 using Uno.UX;
 using Fuse.Scripting;
@@ -62,14 +63,14 @@ namespace StreamingPlayer
 
 	extern(Android) static class TrackAndroidImpl
 	{
-			
+
 		[Foreign(Language.Java)]
 		public static int GetId(Java.Object t)
 		@{
 			streamingPlayer.android.Track track = (streamingPlayer.android.Track)t;
 			return track.Id;
 		@}
-		
+
 		[Foreign(Language.Java)]
 		public static string GetName(Java.Object t)
 		@{
@@ -83,28 +84,28 @@ namespace StreamingPlayer
 			streamingPlayer.android.Track track = (streamingPlayer.android.Track)t;
 			return track.Artist;
 		@}
-		
+
 		[Foreign(Language.Java)]
 		public static string GetUrl(Java.Object t)
 		@{
 			streamingPlayer.android.Track track = (streamingPlayer.android.Track)t;
 			return track.Url;
 		@}
-		
+
 		[Foreign(Language.Java)]
 		public static string GetArtworkUrl(Java.Object t)
 		@{
 			streamingPlayer.android.Track track = (streamingPlayer.android.Track)t;
 			return track.ArtworkUrl;
 		@}
-		
+
 		[Foreign(Language.Java)]
 		public static double GetDuration(Java.Object t)
 		@{
 			streamingPlayer.android.Track track = (streamingPlayer.android.Track)t;
 			return track.Duration;
 		@}
-		
+
 	}
 
 	class TrackConverter : Marshal.IConverter

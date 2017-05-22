@@ -1,3 +1,4 @@
+using Fuse;
 using Uno;
 using Uno.UX;
 using Fuse.Scripting;
@@ -9,11 +10,11 @@ namespace StreamingPlayer
 {
 	[UXGlobalModule]
 	public class PlaylistModule : NativeModule
-	{	
+	{
 		static IStreamingPlayer _player;
 
 		static PlaylistModule _instance;
-		
+
 		NativeEvent _statusChanged;
 		NativeEvent _currentTrackChanged;
 		NativeEvent _hasNextChanged;
@@ -23,11 +24,11 @@ namespace StreamingPlayer
 		{
 			if (_instance != null) return;
 			_instance = this;
-			
+
 			if (_player == null) {
 				_player = StreamingPlayer.New();
 			}
-				
+
 			Resource.SetGlobalKey(_instance, "PlaylistPlayer");
 			AddMember(new NativeFunction("next", (NativeCallback)Next));
 			AddMember(new NativeFunction("previous", (NativeCallback)Previous));
@@ -53,13 +54,13 @@ namespace StreamingPlayer
 
 			_currentTrackChanged = new NativeEvent("currentTrackChanged");
 			AddMember(_currentTrackChanged);
-			
+
 			_hasNextChanged = new NativeEvent("hasNextChanged");
 			AddMember(_hasNextChanged);
-			
+
 			_hasPreviousChanged = new NativeEvent("hasPreviousChanged");
 			AddMember(_hasPreviousChanged);
-			
+
 			_player.StatusChanged += OnStatusChanged;
 			_player.CurrentTrackChanged += OnCurrentTrackChanged;
 			_player.HasNextChanged += OnHasNextChanged;
@@ -67,7 +68,7 @@ namespace StreamingPlayer
 
 			Fuse.Platform.Lifecycle.EnteringForeground += OnEnteringForeground;
 		}
-		
+
 		void OnEnteringForeground(ApplicationState state)
 		{
 			debug_log("Entering foreground: state: " + _player.Status);
@@ -126,12 +127,9 @@ namespace StreamingPlayer
 		{
 			foreach (var a in args)
 			{
-				Track track;
-				if (Marshal.TryConvertTo<Track>(a, out track))
-				{
+				var track = Marshal.ToType<Track>(a);
+				if (a != null)
 					_player.AddTrack(track);
-				}
-
 			}
 			return null;
 		}
@@ -146,11 +144,9 @@ namespace StreamingPlayer
 				for (var i = 0; i < trackArray.Length; i++)
 				{
 					var a = trackArray[i];
-					Track track;
-					if (Marshal.TryConvertTo<Track>(a, out track))
-					{
-						tracks.Add(track);
-					}
+					var track = Marshal.ToType<Track>(a);
+					if (a != null)
+						_player.AddTrack(track);
 				}
 				_player.SetPlaylist(tracks.ToArray());
 			}
