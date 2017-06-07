@@ -251,7 +251,6 @@ namespace StreamingPlayer
 		@{
 			AVPlayer* p = (AVPlayer*)player;
 			[p pause];
-			[p release];
 		@}
 
 		[Foreign(Language.ObjC)]
