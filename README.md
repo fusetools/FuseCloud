@@ -1,3 +1,7 @@
+# Warning
+
+Due to SoundCloud revoking the API for this app, it has been removed from the App Store and Google Play Store. In order to run this app locally, you'll have to obtain your own SoundCloud API, which at the time of this writing (16. Jan 2018) they have stopped issuing.
+
 # FuseCloud
 
 [![Build Status](https://travis-ci.org/fusetools/FuseCloud.svg?branch=master)](https://travis-ci.org/fusetools/FuseCloud)
