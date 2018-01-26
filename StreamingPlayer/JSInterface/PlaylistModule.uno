@@ -90,25 +90,25 @@ namespace StreamingPlayer
 		void OnStatusChanged(PlayerStatus status)
 		{
 			if (CanCallBackToJS)
-				_statusChanged.RaiseAsync(status.Stringify());
+				_statusChanged.RaiseAsync(_statusChanged.Context.ThreadWorker, status.Stringify());
 		}
 
 		void OnHasNextChanged(bool n)
 		{
 			if (CanCallBackToJS)
-				_hasNextChanged.RaiseAsync(n);
+				_hasNextChanged.RaiseAsync(_hasNextChanged.Context.ThreadWorker, n);
 		}
 
 		void OnHasPreviousChanged(bool p)
 		{
 			if (CanCallBackToJS)
-				_hasPreviousChanged.RaiseAsync(p);
+				_hasPreviousChanged.RaiseAsync(_hasPreviousChanged.Context.ThreadWorker, p);
 		}
 
 		void OnCurrentTrackChanged()
 		{
 			if (CanCallBackToJS) {
-				_currentTrackChanged.RaiseAsync();
+				_currentTrackChanged.RaiseAsync(_currentTrackChanged.Context.ThreadWorker);
 			}
 		}
 
